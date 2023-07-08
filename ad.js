@@ -173,6 +173,25 @@ links.forEach(link => {
   });
 });
 
+// クリックイベントハンドラー
+function handleClick(event) {
+  event.preventDefault();
+
+  // クリックした<a>タグのhrefを取得
+  const href = this.getAttribute('href');
+  console.log('クリックしたリンクのhref:', href);
+
+  // ここから追加の処理を記述
+dos();
+}
+
+// <a> 要素を取得
+const link = document.querySelector('a');
+
+// クリックイベントリスナーを追加
+link.addEventListener('click', handleClick);
+
+
 //sasaw
 
     // ポップアップを開く関数
@@ -240,23 +259,10 @@ links.forEach(link => {
 
     // もし target='_blank' が指定されている場合の処理
     if (target === '_blank') {
-      window.open = link.href;
+      window.open = href;
     } else {
-      window.location.href = link.href;
+     window.location.href = href;
     }
 
-    // ここに追加の処理を記述
-
-    // リンクの遷移を再開
-    window.location.href = link.href; 
-
-
-
-
-    // ここに追加の処理を記述
-
-    // リンクの遷移を再開
-    window.location.href = this.href;  // 修正: link.hrefではなくthis.hrefを使用
-	
 	};
 
