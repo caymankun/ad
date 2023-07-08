@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>caymankun-ad</title>
+  <style>
+    /* ポップアップ用のスタイル */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 250px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      padding: 20px;
+      box-sizing: border-box;
+      border-radius: 10px;
+    }
+    
+    .popup-content {
+      text-align: center;
+    }
+    
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      padding: 3px;
+      border-radius: 100px;
+      width: 22px;
+      height: 22px;
+      text-align: center;
+    }
+    .popup-close:hover{
+        background-color: #ccc;
+    }
+    .popup-image {
+      width: 200px;
+      height: 150px;
+      margin-bottom: 10px;
+    }
+    
+    /* オーバーレイ用のスタイル */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9998;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+    <!-- オーバーレイ -->
+    <div id="overlay" class="overlay"></div>
+    
+    <!-- ポップアップ -->
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <img id="banner" src="" class="popup-image">
+        <h2 id="title"></h2>
+        <div id="popup-close" class="popup-close" onclick="closePopup()">×</div>
+      </div>
+    </div>
+    
+    <!-- ポップアップを開くボタン -->
+    <button onclick="openPopup()">広告を表示</button>
+  </body>
+  <script>
+    // ポップアップを開く関数
+    function openPopup() {
+      var popup = document.getElementById('popup');
+      var overlay = document.getElementById('overlay');
+      popup.style.display = 'block';
+      overlay.style.display = 'block';
+    }
+    
+    // ポップアップを閉じる関数
+    function closePopup() {
+      var popup = document.getElementById('popup');
+      var overlay = document.getElementById('overlay');
+      popup.style.display = 'none';
+      overlay.style.display = 'none';
+    }
+    var min = 0 ;
+    var max = 3 ;
+    var random = Math.floor( Math.random() * (max + 1 - min) ) + min ;
+        let h = document.getElementById('title');
+        let b =document.getElementById('banner');
+    if (random === 0){
+        h.innerText = 'c-home';
+        b.src = 'https://caymankun.f5.si/image/logo/c-logo.webp';
+    }else if (random === 1) {
+        h.innerText = 'youtube-cannel';
+        b.src = '';
+    }else if (random === 2){
+        h.innerText = 'c-start';
+        b.src = '';
+    }else if( random === 3){
+        h.innerText = 'c-tool';
+        b.src = '';
+    }
+      </script>
+</html>
