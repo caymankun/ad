@@ -163,10 +163,10 @@ document.body.appendChild(popup);
   //end
 
 // すべての <a> 要素を取得
-const link = document.querySelectorAll('a');
+const links = document.querySelectorAll('a');
 
 // 各 <a> 要素に対してクリックイベントリスナーを追加
-link.forEach(link => {
+links.forEach(link => {
   link.addEventListener('click', function(event) {
     event.preventDefault();
 
