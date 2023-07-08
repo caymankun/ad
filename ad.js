@@ -234,15 +234,24 @@ links.forEach(link => {
     
 	// リンクの遷移を再開
 	function restart(){
-	// target属性を取得
-    const target = this.getAttribute('target');  // 修正: linkではなくthisを使用
+	
+// target属性を取得
+    const target = link.getAttribute('target');  // 修正: thisではなくlinkを使用
 
     // もし target='_blank' が指定されている場合の処理
     if (target === '_blank') {
-      console.log('リンクは新しいタブで開かれます');
+      window.open = link.href;
     } else {
-      console.log('リンクは同じタブで開かれます');
+      window.location.href = link.href;
     }
+
+    // ここに追加の処理を記述
+
+    // リンクの遷移を再開
+    window.location.href = link.href; 
+
+
+
 
     // ここに追加の処理を記述
 
