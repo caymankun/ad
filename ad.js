@@ -161,7 +161,6 @@ document.body.appendChild(popup);
 
 
   //end
-
 // すべての <a> 要素を取得
 const links = document.querySelectorAll('a');
 
@@ -170,11 +169,9 @@ links.forEach(link => {
   link.addEventListener('click', function(event) {
     event.preventDefault();
 
-    // 処理を記述
     dos();
   });
 });
-
 
 //sasaw
 
@@ -237,15 +234,15 @@ links.forEach(link => {
     
 	// リンクの遷移を再開
 	function restart(){
-		
-		// もしリンク要素が存在し、target属性が'_blank'と等しい場合に処理を実行
-if (link && link.getAttribute('target') === '_blank') {
-  // target='_blank'が指定されている場合の処理
-  window.open = link.href;
-} else {
-  // target='_blank'が指定されていない場合の処理
-  window.location.href = link.href;
-}
+	// target属性を取得
+    const target = link.getAttribute('target');
 
+    // もし target='_blank' が指定されている場合の処理
+    if (target === '_blank') {
+     window.open = link.href;
+    } else {
+     window.location.href = link.href;
+    }
+	
 	};
 
