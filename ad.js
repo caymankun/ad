@@ -164,7 +164,7 @@ document.body.appendChild(popup);
 
 
 // リンク要素を取得
-const link = document.querySelector('a');
+const link = document.querySelectorAll('a');
 
 // クリックイベントリスナーを追加
 if (link) {
