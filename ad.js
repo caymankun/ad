@@ -144,7 +144,7 @@ title.id = 'title';
 const popupClose = document.createElement('img');
 popupClose.id = 'popup-close';
 popupClose.className = 'popup-close';
-popupClose.src = 'back.svg'
+popupClose.src = 'https://ad-5qt.pages.dev/back.svg'
 popupClose.onclick = closePopup;
 
 // ポップアップコンテンツに要素を追加
