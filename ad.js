@@ -162,19 +162,19 @@ document.body.appendChild(popup);
 
   //end
 
+// すべての <a> 要素を取得
+const links = document.querySelectorAll('a');
 
-// リンク要素を取得
-const link = document.querySelectorAll('a');
-
-// クリックイベントリスナーを追加
-if (link) {
+// 各 <a> 要素に対してクリックイベントリスナーを追加
+links.forEach(link => {
   link.addEventListener('click', function(event) {
     event.preventDefault();
-    
+
     // 処理を記述
     dos();
-  })
-}
+  });
+});
+
 
 //sasaw
 
