@@ -201,16 +201,16 @@ if (link) {
     let b =document.getElementById('banner');
     if (random === 0){
         h.innerText = 'c-home';
-        b.src = 'https://ad-5qt.pages.dev/ad.js/c-site.webp';
+        b.src = 'https://ad-5qt.pages.dev/c-site.webp';
     }else if (random === 1) {
         h.innerText = 'youtube-cannel';
-        b.src = 'https://ad-5qt.pages.dev/ad.js/yt.webp';
+        b.src = 'https://ad-5qt.pages.dev/yt.webp';
     }else if (random === 2){
         h.innerText = 'c-start';
-        b.src = 'https://ad-5qt.pages.dev/ad.js/cstart.webp';
+        b.src = 'https://ad-5qt.pages.dev/cstart.webp';
     }else if( random === 3){
         h.innerText = 'c-tool';
-        b.src = 'https://ad-5qt.pages.dev/ad.js/ctool.webp';
+        b.src = 'https://ad-5qt.pages.dev/ctool.webp';
     }
 	b.onclick = gobanner;
 	function gobanner(){
