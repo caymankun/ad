@@ -166,7 +166,7 @@ document.body.appendChild(popup);
 const links = document.querySelectorAll('a');
 
 // クリックイベントリスナーを追加
-if (links) {
+if (links.length > 0) {
   links.forEach(function(link) {
     link.addEventListener('click', function(event) {
       event.preventDefault();
