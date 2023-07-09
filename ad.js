@@ -159,110 +159,93 @@ popup.appendChild(popupContent);
 document.body.appendChild(overlay);
 document.body.appendChild(popup);
 
+//end root
 
-  //end
-// すべての <a> 要素を取得
-const links = document.querySelectorAll('a');
 
-// 各 <a> 要素に対してクリックイベントリスナーを追加
-links.forEach(link => {
-  link.addEventListener('click', function(event) {
-    event.preventDefault();
 
-    dos();
-  });
-});
-
-// クリックイベントハンドラー
-function handleClick(event) {
-  event.preventDefault();
-
-  // クリックした<a>タグのhrefを取得
-  const href = this.getAttribute('href');
-  console.log('クリックしたリンクのhref:', href);
-
-  // ここから追加の処理を記述
-dos();
-}
-
-// <a> 要素を取得
+// リンク要素を取得
 const link = document.querySelector('a');
 
 // クリックイベントリスナーを追加
-link.addEventListener('click', handleClick);
-
-
-//sasaw
-
-    // ポップアップを開く関数
-    function openPopup() {
-      var popup = document.getElementById('popup');
-      var overlay = document.getElementById('overlay');
-      popup.style.display = 'block';
-      overlay.style.display = 'block';
-    }
+if (link) {
+  link.addEventListener('click', function(event) {
+    event.preventDefault();
     
-    // ポップアップを閉じる関数
-    function closePopup() {
-      var popup = document.getElementById('popup');
-      var overlay = document.getElementById('overlay');
-      popup.style.display = 'none';
-      overlay.style.display = 'none';
-	  restart();
-    }
-    var min = 0 ;
-    var max = 3 ;
-    var random = Math.floor( Math.random() * (max + 1 - min) ) + min ;
-    let h = document.getElementById('title');
-    let b =document.getElementById('banner');
-    if (random === 0){
-        h.innerText = 'c-home';
-        b.src = 'https://ad-5qt.pages.dev/c-site.webp';
-    }else if (random === 1) {
-        h.innerText = 'youtube-cannel';
-        b.src = 'https://ad-5qt.pages.dev/yt.webp';
-    }else if (random === 2){
-        h.innerText = 'c-start';
-        b.src = 'https://ad-5qt.pages.dev/cstart.webp';
-    }else if( random === 3){
-        h.innerText = 'c-tool';
-        b.src = 'https://ad-5qt.pages.dev/ctool.webp';
-    }
-	b.onclick = gobanner;
-	function gobanner(){
-		if (random === 0){
-			window.location.href = 'https://caymankun.f5.si' ;
-		}else if (random === 1) {
-			window.location.href ='https://www.youtube.com/@caymankun1359' ;
-		}else if (random === 2){
-			window.location.href ='https://c-start.f5.si' ;
-		}else if( random === 3){
-			window.location.href ='https://c-tool.f5.si/' ;
-		}
-	}
-    var minv = 0 ;
-    var maxv = 2 ;
-    var randomv = Math.floor( Math.random() * (maxv + 1 - minv) ) + minv ;
-	function dos(){
-		if (randomv === 2){
-      openPopup();
-    }else{
-		restart();
-    }
-	}
-    
-	// リンクの遷移を再開
-	function restart(){
-	
-// target属性を取得
-    const target = link.getAttribute('target');  // 修正: thisではなくlinkを使用
+    // 処理を記述
+    dos();
+  })
+}
 
-    // もし target='_blank' が指定されている場合の処理
-    if (target === '_blank') {
-      window.open = href;
-    } else {
-     window.location.href = href;
-    }
+// ポップアップを開く関数
+function openPopup() {
+  var popup = document.getElementById('popup');
+  var overlay = document.getElementById('overlay');
+  popup.style.display = 'block';
+  overlay.style.display = 'block';
+}
 
-	};
+// ポップアップを閉じる関数
+function closePopup() {
+  var popup = document.getElementById('popup');
+  var overlay = document.getElementById('overlay');
+  popup.style.display = 'none';
+  overlay.style.display = 'none';
+  restart();
+}
 
+var min = 0 ;
+var max = 3 ;
+var random = Math.floor( Math.random() * (max + 1 - min) ) + min ;
+let h = document.getElementById('title');
+let b = document.getElementById('banner');
+if (random === 0){
+  h.innerText = 'c-home';
+  b.src = 'https://ad-5qt.pages.dev/c-site.webp';
+}else if (random === 1) {
+  h.innerText = 'youtube-cannel';
+  b.src = 'https://ad-5qt.pages.dev/yt.webp';
+}else if (random === 2){
+  h.innerText = 'c-start';
+  b.src = 'https://ad-5qt.pages.dev/cstart.webp';
+}else if( random === 3){
+  h.innerText = 'c-tool';
+  b.src = 'https://ad-5qt.pages.dev/ctool.webp';
+}
+
+b.onclick = gobanner;
+
+function gobanner(){
+  if (random === 0){
+    window.location.href = 'https://caymankun.f5.si';
+  }else if (random === 1) {
+    window.location.href = 'https://www.youtube.com/@caymankun1359';
+  }else if (random === 2){
+    window.location.href = 'https://c-start.f5.si';
+  }else if( random === 3){
+    window.location.href = 'https://c-tool.f5.si/';
+  }
+}
+
+var minv = 0 ;
+var maxv = 2 ;
+var randomv = Math.floor( Math.random() * (maxv + 1 - minv) ) + minv ;
+
+function dos(){
+  if (randomv === 2){
+    openPopup();
+  }else{
+    restart();
+  }
+}
+
+// リンクの遷移を再開
+function restart(){
+  // もしリンク要素が存在し、target属性が'_blank'と等しい場合に処理を実行
+  if (link && link.getAttribute('target') === '_blank') {
+    // target='_blank'が指定されている場合の処理
+    window.open(link.href);
+  } else {
+    // target='_blank'が指定されていない場合の処理
+    window.location.href = link.href;
+  }
+}
