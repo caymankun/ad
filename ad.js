@@ -81,7 +81,7 @@ const cssRules = `
 
 .popup-image {
   width: 200px;
-  height: 150px;
+  height: auto;
   margin-bottom: 10px;
 }
 
