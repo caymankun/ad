@@ -162,18 +162,19 @@ document.body.appendChild(popup);
 //end root
 
 
-
 // リンク要素を取得
-const link = document.querySelector('a');
+const links = document.querySelectorAll('a');
 
 // クリックイベントリスナーを追加
-if (link) {
-  link.addEventListener('click', function(event) {
-    event.preventDefault();
-    
-    // 処理を記述
-    dos();
-  })
+if (links) {
+  links.forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      
+      // 処理を記述
+      dos();
+    })
+  });
 }
 
 // ポップアップを開く関数
