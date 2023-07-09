@@ -227,11 +227,11 @@ function gobanner(){
 }
 
 var minv = 0 ;
-var maxv = 2 ;
+var maxv = 1 ;
 var randomv = Math.floor( Math.random() * (maxv + 1 - minv) ) + minv ;
 
 function dos(){
-  if (randomv === 2){
+  if (randomv === 1){
     openPopup();
   }else{
     restart();
