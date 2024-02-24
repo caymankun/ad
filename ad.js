@@ -139,6 +139,30 @@ popup.appendChild(popupContent);
 body.appendChild(overlay);
 body.appendChild(popup);
 
+// ランダムなバナーとそのリンクを定義
+const banners = [
+  {
+    title: 'c-home',
+    src: 'https://ad-5qt.pages.dev/c-site.webp',
+    link: 'https://caymankun.f5.si'
+  },
+  {
+    title: 'youtube-channel',
+    src: 'https://ad-5qt.pages.dev/yt.webp',
+    link: 'https://www.youtube.com/@caymankun1359'
+  },
+  {
+    title: 'c-start',
+    src: 'https://ad-5qt.pages.dev/cstart.webp',
+    link: 'https://c-start.f5.si'
+  },
+  {
+    title: 'c-tool',
+    src: 'https://ad-5qt.pages.dev/ctool.webp',
+    link: 'https://c-tool.f5.si/'
+  }
+];
+
 // ポップアップを開く関数
 function openPopup() {
   popup.style.display = 'block';
@@ -155,7 +179,27 @@ function closePopup() {
 }
 
 // ページ読み込み後に実行
-window.onload = function() {
+window.onload = async function() {
+  const banners = await fetchBanners();
+  
+  if (banners.length === 0) {
+    console.error('No banners found.');
+    return;
+  }
+  
+  // ランダムなバナーの選択
+  const randomIndex = Math.floor(Math.random() * banners.length);
+  const randomBanner = banners[randomIndex];
+  
+  // タイトルと画像の設定
+  title.innerText = randomBanner.title;
+  banner.src = randomBanner.src;
+  
+  // バナーがクリックされた時のリンク設定
+  banner.onclick = function() {
+    window.location.href = randomBanner.link;
+  };
+  
   const link = document.querySelector('a');
   
   if (link) {
@@ -172,3 +216,14 @@ window.onload = function() {
     });
   }
 };
+
+async function fetchBanners() {
+  try {
+    const response = await fetch('list.json'); // 外部 JSON ファイルの URL を指定してください
+    const data = await response.json();
+    return data.banners;
+  } catch (error) {
+    console.error('Error fetching banners:', error);
+    return [];
+  }
+}
