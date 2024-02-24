@@ -219,7 +219,7 @@ window.onload = async function() {
 
 async function fetchBanners() {
   try {
-    const response = await fetch('list.json'); // 外部 JSON ファイルの URL を指定してください
+    const response = await fetch('https://ad-5qt.pages.dev/list.json'); // 外部 JSON ファイルの URL を指定してください
     const data = await response.json();
     return data.banners;
   } catch (error) {
