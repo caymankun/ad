@@ -1,17 +1,5 @@
 // ドキュメントの head 要素を取得
-const oldHead = document.querySelector('head');
-
-// ドキュメントの body 要素を取得
-const oldBody = document.querySelector('body');
-
-// html要素を取得
-const html = document.documentElement;
-
-// lang属性を設定
-html.setAttribute('lang', 'ja');
-
-// head要素を取得
-const headcc = document.head;
+const head = document.head;
 
 // meta要素（Content-Type）を作成
 const metaContentType = document.createElement('meta');
@@ -22,20 +10,21 @@ metaContentType.setAttribute('content', 'text/html; charset=UTF-8');
 const metaCharset = document.createElement('meta');
 metaCharset.setAttribute('charset', 'UTF-8');
 
+// meta要素（content-language）を作成
+const metaContentLanguage = document.createElement('meta');
+metaContentLanguage.setAttribute('http-equiv', 'content-language');
+metaContentLanguage.setAttribute('content', 'ja');
+
+// meta要素（viewport）を作成
+const metaViewport = document.createElement('meta');
+metaViewport.setAttribute('name', 'viewport');
+metaViewport.setAttribute('content', 'width=device-width,initial-scale=1.0');
+
 // head要素にmeta要素を追加
-headcc.appendChild(metaContentType);
-headcc.appendChild(metaCharset);
-
-// head要素を取得
-const head = document.querySelector('head');
-
-// メタタグを作成
-const metaTag = document.createElement('meta');
-metaTag.setAttribute('name', 'viewport');
-metaTag.setAttribute('content', 'width=device-width,initial-scale=1.0');
-
-// メタタグをhead要素に追加
-head.appendChild(metaTag);
+head.appendChild(metaContentType);
+head.appendChild(metaCharset);
+head.appendChild(metaContentLanguage);
+head.appendChild(metaViewport);
 
 // スタイル要素を作成
 const style = document.createElement('style');
@@ -102,19 +91,10 @@ const cssRules = `
 style.appendChild(document.createTextNode(cssRules));
 
 // ヘッド要素にスタイル要素を追加
-document.head.appendChild(style);
+head.appendChild(style);
 
-// head要素を取得
-const headza = document.head;
-
-// meta要素を作成
-const metaContentLanguage = document.createElement('meta');
-metaContentLanguage.setAttribute('http-equiv', 'content-language');
-metaContentLanguage.setAttribute('content', 'ja');
-
-// head要素にmeta要素を追加
-headza.appendChild(metaContentLanguage);
-
+// ボディ要素を取得
+const body = document.body;
 
 // オーバーレイ要素を作成
 const overlay = document.createElement('div');
@@ -144,7 +124,7 @@ title.id = 'title';
 const popupClose = document.createElement('img');
 popupClose.id = 'popup-close';
 popupClose.className = 'popup-close';
-popupClose.src = 'https://ad-5qt.pages.dev/back.svg'
+popupClose.src = 'https://ad-5qt.pages.dev/back.svg';
 popupClose.onclick = closePopup;
 
 // ポップアップコンテンツに要素を追加
@@ -156,31 +136,11 @@ popupContent.appendChild(popupClose);
 popup.appendChild(popupContent);
 
 // ボディ要素にオーバーレイとポップアップ要素を追加
-document.body.appendChild(overlay);
-document.body.appendChild(popup);
-
-//end root
-
-
-// リンク要素を取得
-const links = document.querySelectorAll('a');
-
-// クリックイベントリスナーを追加
-if (links.length > 0) {
-  links.forEach(function(link) {
-    link.addEventListener('click', function(event) {
-      event.preventDefault();
-      
-      // 処理を記述
-      dos();
-    })
-  });
-}
+body.appendChild(overlay);
+body.appendChild(popup);
 
 // ポップアップを開く関数
 function openPopup() {
-  var popup = document.getElementById('popup');
-  var overlay = document.getElementById('overlay');
   popup.style.display = 'block';
   overlay.style.display = 'block';
 }
@@ -191,62 +151,24 @@ function closePopup() {
   var overlay = document.getElementById('overlay');
   popup.style.display = 'none';
   overlay.style.display = 'none';
-  restart();
+  restart(); // リンクの遷移を再開
 }
 
-var min = 0 ;
-var max = 3 ;
-var random = Math.floor( Math.random() * (max + 1 - min) ) + min ;
-let h = document.getElementById('title');
-let b = document.getElementById('banner');
-if (random === 0){
-  h.innerText = 'c-home';
-  b.src = 'https://ad-5qt.pages.dev/c-site.webp';
-}else if (random === 1) {
-  h.innerText = 'youtube-cannel';
-  b.src = 'https://ad-5qt.pages.dev/yt.webp';
-}else if (random === 2){
-  h.innerText = 'c-start';
-  b.src = 'https://ad-5qt.pages.dev/cstart.webp';
-}else if( random === 3){
-  h.innerText = 'c-tool';
-  b.src = 'https://ad-5qt.pages.dev/ctool.webp';
-}
-
-b.onclick = gobanner;
-
-function gobanner(){
-  if (random === 0){
-    window.location.href = 'https://caymankun.f5.si';
-  }else if (random === 1) {
-    window.location.href = 'https://www.youtube.com/@caymankun1359';
-  }else if (random === 2){
-    window.location.href = 'https://c-start.f5.si';
-  }else if( random === 3){
-    window.location.href = 'https://c-tool.f5.si/';
+// ページ読み込み後に実行
+window.onload = function() {
+  const link = document.querySelector('a');
+  
+  if (link) {
+    link.addEventListener('click', function(event) {
+      event.preventDefault(); // リンクのデフォルトの挙動を無効化
+      
+      const randomValue = Math.floor(Math.random() * 2); // 0または1の乱数
+      
+      if (randomValue === 1) {
+        openPopup();
+      } else {
+        window.location.href = link.href; // リンクの遷移を実行
+      }
+    });
   }
-}
-
-var minv = 0 ;
-var maxv = 1 ;
-var randomv = Math.floor( Math.random() * (maxv + 1 - minv) ) + minv ;
-
-function dos(){
-  if (randomv === 1){
-    openPopup();
-  }else{
-    restart();
-  }
-}
-
-// リンクの遷移を再開
-function restart(){
-  // もしリンク要素が存在し、target属性が'_blank'と等しい場合に処理を実行
-  if (link && link.getAttribute('target') === '_blank') {
-    // target='_blank'が指定されている場合の処理
-    window.open(link.href);
-  } else {
-    // target='_blank'が指定されていない場合の処理
-    window.location.href = link.href;
-  }
-}
+};
